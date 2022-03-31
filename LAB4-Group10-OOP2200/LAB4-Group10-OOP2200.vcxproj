@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BarrelRoll.cpp" />
     <ClCompile Include="LAB4-Group10-OOP2200.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BarrelRoll.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

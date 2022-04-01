@@ -2,4 +2,4 @@
 
 using namespace std;
 
-void RandomRoll(int num);
+int RandomRoll(int num);

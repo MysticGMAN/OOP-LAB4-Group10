@@ -2,13 +2,15 @@
 //
 
 #include <iostream>
-
+#include "BarrelRoll.h"
+#include <string>
 using namespace std;
 
 int main()
 {
-	int input;
+	RandomRoll();
 
+	
 
 
 

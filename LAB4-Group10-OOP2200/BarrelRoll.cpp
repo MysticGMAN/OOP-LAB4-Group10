@@ -5,22 +5,30 @@
 #include <time.h>	// time 
 using namespace std;
 
-int RandomRoll(int num)
+void RandomRoll()
 {
-	int min = 0;
-	int max = 50;
+	int live = 3;
+	int laugh = 6;
+	int love = 7;
 	bool youShallNotPass = false;
 	//int* rollOrder = nullptr;
 	int* rollRandom = nullptr;
 	//rollOrder = new int[num];
-	rollRandom = new int[num];
 	
-
+	int matchCount = 0;
+	string generatedRoll;
+	string match;
+	int num;
 	while (youShallNotPass == false)
 	{
-		
-		if (min >= num && num <= max)
+		cout << "Please enter a 3 or 6 or 7\n";
+		cin >> num;
+
+		if (live == num || laugh == num || love == num)
 		{
+			srand(time(NULL));
+
+			rollRandom = new int[num];
 			for (int i = 0; i <= num - 1; i++)
 			{
 				//rollOrder[i] = i;
@@ -29,26 +37,57 @@ int RandomRoll(int num)
 			}
 			for (int i = 0; i <= num - 1; i++)
 			{
-				string generatedRoll = "|" + to_string(rollRandom[i]);
+				generatedRoll += "|" + to_string(rollRandom[i]);
 
-				for (int x = 0; x <= num - 1; x++)
+				for (int x = i + 1; x <= num - 1; x++)
 				{
-					if (rollRandom[i] == rollRandom[x])
+					if (rollRandom[x] == rollRandom[i])
 					{
-						string match = "|" + to_string(rollRandom[i]);
+						match += "|" + to_string(rollRandom[x]);
+						match += "|" + to_string(rollRandom[x]);
+						matchCount++;
+						break;
 					}
 				}
 			}
 
-
+			display(generatedRoll, match, matchCount);
+			
 		}
+		else
+		{
+			continue;
+		}
+
+		delete[] rollRandom;
+		youShallNotPass = true;
 	}
 
-	delete[] rollRandom;
+
+	
 }
 
 
-void display(string one, string two)
+void display(string one, string two, int count)
 {
+	
+	if (count >= 3)
+	{
+		cout << "\nYour generated string is " << one;
+		cout << "\nThese are your repeats" << two;
+		cout << "\nBetter luck next time";
+	}
+	
+	else if (count >= 1)
+	{
+		cout << "\nYour generated string is " << one;
+		cout << "\nThese are your repeats" << two;
+		cout << "\nSecond Prize winner, A number is repeated twice";
+	}
+	else if (count >= 0)
+	{
+		cout << "\nYour generated string is " << one;
 
+		cout << "\nFirst Prize winner, All numbers are unique";
+	}
 }
